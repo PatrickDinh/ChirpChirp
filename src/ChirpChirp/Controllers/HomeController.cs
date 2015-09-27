@@ -10,7 +10,7 @@ namespace ChirpChirp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("~/wwwroot/build/index.cshtml");
         }
 
         public IActionResult About()

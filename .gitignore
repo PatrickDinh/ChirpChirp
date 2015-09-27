@@ -152,7 +152,7 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules
-bower_modules
+bower_components
 lib
 
 # RIA/Silverlight projects
