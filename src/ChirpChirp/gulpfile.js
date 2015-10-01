@@ -4,6 +4,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var del = require('del');
 var wiredep = require('wiredep').stream;
+var ngHtml2Js = require('gulp-ng-html2js');
+var flatten = require('gulp-flatten');
 
 var paths = {
   build: 'wwwroot/build',
@@ -13,10 +15,8 @@ var paths = {
     json: require('./bower.json'),
     directory: 'wwwroot/bower_components'
   },
-}
-
-var config = {
-  src: ['app/**/*.js', '!app/**/*.min.js']
+  js: ['app/**/*.js', '!app/**/*.min.js'],
+  views: 'app/**/*.tpl.html'
 }
 
 gulp.task('index', function () {
@@ -29,9 +29,17 @@ gulp.task('clean', [], function (callback) {
 });
 
 gulp.task('scripts', [], function () {
-  return gulp.src(config.src)
-    .pipe(concat('build.min.js'))
-    .pipe(gulp.dest(paths.build));
+  return gulp.src(paths.js)
+             .pipe(concat('build.min.js'))
+             .pipe(gulp.dest(paths.build));
+});
+
+gulp.task('views', [], function () {
+  return gulp.src(paths.views)
+             .pipe(flatten())
+             .pipe(ngHtml2Js({ moduleName: 'chirpchirp' }))
+             .pipe(concat('views.js'))
+             .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('libraries', ['scripts', 'index'], function () {
@@ -47,8 +55,9 @@ gulp.task('libraries', ['scripts', 'index'], function () {
 });
 
 gulp.task('watch', [], function () {
-  return gulp.watch(config.src, ['scripts']);
+  gulp.watch(paths.js, ['scripts']);
+  gulp.watch(paths.views, ['views']);
 });
 
 //Set a default tasks
-gulp.task('default', ['clean', 'scripts', 'index', 'libraries'], function () { });
+gulp.task('default', ['clean', 'scripts', 'views', 'index', 'libraries'], function () { });

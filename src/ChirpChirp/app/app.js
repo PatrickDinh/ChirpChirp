@@ -19,8 +19,6 @@ function addAngularState(id, url, title, controller, template) {
     bindToController: true
   };
 
-  console.log(stateConfig);
-
   app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state(id, stateConfig);
   }]);

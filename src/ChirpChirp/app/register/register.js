@@ -1,5 +1,5 @@
-﻿var controller = app.controller('register', function () {
-  console.log('asd');
-});
+﻿var controller = function () {
+
+}
 
 addAngularState('register', '/register', 'Register', controller, '');
