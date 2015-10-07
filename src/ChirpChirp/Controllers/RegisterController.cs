@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ChirpChirp.Domain;
 using Microsoft.AspNet.Mvc;
 
 namespace ChirpChirp.Controllers
@@ -9,15 +6,22 @@ namespace ChirpChirp.Controllers
     [Route("api/[controller]")]
     public class RegisterController : Controller
     {
-        public void Register(RegisterDto dto)
-        {
+        private readonly AuthRepository _authRepository;
 
+        public RegisterController(AuthRepository authRepository)
+        {
+            _authRepository = authRepository;
+        }
+
+        public async void Register(RegisterDto dto)
+        {
+            await _authRepository.RegisterUser(dto.Username, dto.Password);
         }
     }
 
     public class RegisterDto
     {
         public string Username { get; set; }
-        public string Passwrod { get; set; }
+        public string Password { get; set; }
     }
 }

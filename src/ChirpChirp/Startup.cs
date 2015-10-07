@@ -27,12 +27,6 @@ namespace ChirpChirp
         {
             // Add MVC services to the services container.
             services.AddMvc();
-
-            using (var db = new ChirpChirpContext(@""))
-            {
-                var users = db.Users;
-                var a = users.Find(1);
-            }
         }
 
         // Configure is called after ConfigureServices is called.

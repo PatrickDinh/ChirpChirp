@@ -14,7 +14,11 @@
         "Microsoft.Framework.Logging": "1.0.0-beta5",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta5",
-        "EntityFramework": "6.1.3"
+        "EntityFramework": "6.1.3",
+        "Microsoft.AspNet.Identity.EntityFramework": "2.2.1",
+        "Autofac": "3.5.2",
+        "Autofac.AttributeRegistration": "0.1.0",
+        "ConfigInjector": "1.1.0.6"
     },
 
     "commands": {

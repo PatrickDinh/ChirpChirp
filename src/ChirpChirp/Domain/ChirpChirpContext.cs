@@ -1,10 +1,12 @@
 ﻿using System.Data.Entity;
+using ChirpChirp.Settings;
 
 namespace ChirpChirp.Domain
 {
     public class ChirpChirpContext : DbContext
     {
-        public ChirpChirpContext(string connectionString) : base(connectionString) {
+        public ChirpChirpContext(DbConnectionString dbConnectionString) : base(dbConnectionString)
+        {
             Database.SetInitializer(new DropCreateDatabaseAlways<ChirpChirpContext>());
         }
 
